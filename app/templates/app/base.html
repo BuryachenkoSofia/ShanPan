@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{% block title %}Шановне Панство{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/detail.css'%}" type="text/css">
+  <link rel="stylesheet" href="{% static 'css/styles.css'%}" type="text/css">
+  <script src="{% static 'js/scripts.js' %}"></script>
+  {% block link %}{% endblock %}
+</head>
+
+<body>
+  <header>
+    <nav class="menu">
+      <ul>
+        <li><a href="{% url 'About' %}">Про Шановне Панство</a>
+          <ul>
+            <li><a href="{% url 'About' %}#textbook">Підручник з історії</a></li>
+            <li><a href="{% url 'About' %}#constitution">Конституція</a></li>
+            <li><a href="{% url 'About' %}#list">Перелік жителів</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'Home' %}">Головна</a></li>
+        <li> 
+          <button id="theme-switcher">
+            <img id="theme-image" src="{% static 'img/on.png' %}" alt="Тема">
+          </button>
+
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% block main %}На жаль, ця сторінка зараз порожня...{% endblock %}
+  </main>
+  <footer>
+    {% block footer %}All the rights reserved to "Бусюсюндри!"{% endblock %}
+  </footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+{{article.article_title}}
+{% endblock %}
+
+
+{% block main %}
+
+<section class="article">
+  <p class="article_title">{{article.article_title}}</p>
+
+  <p class="article_text">{{article.article_text}}</p>
+
+  <p class="pub_date">{{article.pub_date}}</p>
+</section>
+
+
+<!-- {% if article.was_published_recently %}
+<h1 width="50px">Нова новина</h1>
+{% endif %} -->
+
+<section class="latest_comments_list">
+  {% if latest_comments_list%}
+
+  {% for c in latest_comments_list %}
+    
+      <p class="author_name">{{ c.author_name }}</p>
+      <p class="comment_text">{{ c.comment_text }}</p>
+  {% endfor %}
+
+{% else %}
+Тут поки немає коментарів, будь першим!
+{% endif %}
+</section>
+
+<hr>
+<form class="input_form" width="100px" action="{% url 'leave_comment' article.id %}" method="POST">
+  {% csrf_token %}
+  <input class="input_name" type="text" required placeholder="Вaше ім'я" name="name">
+  <br> 
+  <textarea class="input_text" name="text" required="" placeholder="Teкст комментаря" cols="30" rows="10"></textarea>
+  <br>
+  <button class="input_button" type="submit">Оставить комментарий</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+All the rights reserved to "Бусюсюндри!"
+{% endblock %}

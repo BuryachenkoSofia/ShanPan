@@ -1,0 +1,116 @@
+:root {
+  --background-color: #f4f4f4;
+  --text-color: #333;
+  --article-background: #f4f4f4;
+  --article-border: 1px solid #ddd;
+  --article-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --article-title-color: #333;
+  --article-text-color: #555;
+  --pub-date-color: #777;
+  --latest-comments-background: #f4f4f4;
+  --latest-comments-border: 1px solid #ddd;
+  --latest-comments-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --author-name-color: #444;
+  --comment-text-color: #666;
+  --input-element-border: 1px solid #ccc;
+  --input-button-bg: #4CAF50;
+  --input-button-text-color: white;
+  --input-button-hover-bg: #45a049;
+}
+
+[data-theme="dark"] {
+  --background-color: #081B1C;
+  --text-color: #ffffff;
+  --article-background: #2c2c2c;
+  --article-border: 1px solid #334d4d;
+  --article-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --article-title-color: #ffffff;
+  --article-text-color: #a0a0a0;
+  --pub-date-color: #a0a0a0;
+  --latest-comments-background: #2c2c2c;
+  --latest-comments-border: 1px solid #4d4d4d;
+  --latest-comments-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --author-name-color: #cccccc;
+  --comment-text-color: #b3b3b3;
+  --input-element-border: 1px solid #666;
+  --input-button-bg: #1e8e1e;
+  --input-button-text-color: white;
+  --input-button-hover-bg: #1b751b;
+}
+
+
+/* Article styles */
+.article {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: var(--article-background);
+  border: var(--article-border);
+  border-radius: 4px;
+  box-shadow: var(--article-shadow);
+}
+
+.article_title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--article-title-color);
+}
+
+.article_text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--article-text-color);
+}
+
+.pub_date {
+  font-size: 14px;
+  color: var(--pub-date-color);
+}
+
+/* Latest comments styles */
+.latest_comments_list {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--latest-comments-background);
+  border: var(--latest-comments-border);
+  border-radius: 4px;
+  box-shadow: var(--latest-comments-shadow);
+}
+
+.author_name {
+  font-weight: bold;
+  color: var(--author-name-color);
+}
+
+.comment_text {
+  font-size: 14px;
+  color: var(--comment-text-color);
+  margin-bottom: 10px;
+}
+
+/* Input form styles */
+.input_form {
+  margin-top: 20px;
+}
+
+.input_name,
+.input_text {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: var(--input-element-border);
+  border-radius: 4px;
+}
+
+.input_button {
+  background-color: var(--input-button-bg);
+  color: var(--input-button-text-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input_button:hover {
+  background-color: var(--input-button-hover-bg);
+}

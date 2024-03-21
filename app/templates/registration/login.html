@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+
+{% block main %}
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="username" id="username">
+  <input type="password" name="password" id="password">
+  <button>Login</button>
+  {{ form.errors }}
+</form>
+{% endblock %}

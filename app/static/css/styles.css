@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+
+:root {
+  --background-color: #a9c1b4;
+  --text-color: #ffffff;
+  --link: #ffffff;
+  --all-links-div-a: black;
+  --header-background-color: #588473;
+  --constitution-color:  #588473;
+  --book-color:  #588473;
+  --busu-background: #588473;
+  --background-color-menu:#588473;
+  --background-color-menu-hover:#276857; 
+  --background-image-light-dark: url('{% static "on.png" %}');
+}
+
+[data-theme="dark"] {
+  --background-color: #081B1C;
+  --text-color: #ffffff;
+  --header-background-color: #163737;
+  --link: #66B2FF;
+  --book-color: #163737;
+  --all-links-div-a: black;
+  --constitution-color: #2c2c2c;
+  --background-color-menu: #2A534C;
+  --background-color-menu-hover:#163737;
+  --busu-background: #163737;
+  --background-image-light-dark:  url('{% static "off.png" %}');
+  
+}
+html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+/*Футер і хедер, еххх*/
+footer,header {
+  background-color: var(--header-background-color);
+  padding: 10px;
+  margin: -10px;
+  text-align: center;
+  font-size: 25px;
+  color: var(--header-text-color);
+}
+main{
+  margin-top: 20px;
+}
+footer{
+  margin-top: 10px;
+  font-size: 20px;
+}
+/*Наш бідний хедер*/
+.menu {
+  top: 0;
+  width: 100%;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.menu>ul {
+  display: flex;
+}
+
+.menu>ul li {
+  position: relative;
+  margin: 0 10px;
+}
+
+.menu>ul li a {
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  color: var(--text-color);
+  padding: 10px;
+  display: block;
+  height: 50px;
+}
+
+.menu>ul li a:hover {
+  color: #276857;
+}
+
+.menu>ul li ul {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  width: 280px;
+  margin-left: -40px;
+  display: none;
+}
+
+.menu>ul li:hover>ul {
+  display: block;
+}
+
+.menu ul li ul li {
+  width: 100%;
+  margin: 0;
+  height: 55px;
+  background-color: var(--background-color-menu);
+}
+
+.menu ul li ul li a:hover {
+  color: white;
+  background-color: var(--background-color-menu-hover);
+}
+
+.menu ul li ul li a {
+  font-size: 17px;
+  width: auto;
+  padding: 3px;
+  margin: 0px;
+  display: block;
+  line-height: normal;
+  border: none;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+
+ul,
+ol,
+li {
+  list-style-type: none;
+}
+
+/*Розділ "Про нас"*/
+.book,
+.constitution {
+  margin: 0 auto;
+  width: 80%;
+  padding: 20px;
+}
+
+.book {
+  background-color: var(--book-color);
+
+}
+
+.constitution {
+  background-color: var(--constitution-color);
+}
+
+/*Посилання (в основному хедер)*/
+.all_links {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.all_links div {
+  padding: 10px;
+  margin: 10px;
+}
+
+.all_links div a {
+  text-decoration: none;
+  color: var(--all-links-div-a);
+  font-size: 100px;
+  margin: auto 60px;
+}
+
+.all_links div p {
+  margin: auto 20px;
+}
+
+.link {
+  background-color: var(--link);
+  border-radius: 20px;
+}
+
+/*Перманентний маркер*/
+.hidden-image {
+  display: none;
+}
+
+.hover-text:hover+.hidden-image {
+  display: block;
+}
+/*Заголовки розділів в сторінці "Про нас"*/
+.kvadratik {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto ;
+
+}
+
+
+/*Секретна сторінка бусюсюндр*/
+.text-image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text-image p {
+  margin: 0;
+  padding-right: 1rem;
+  background-color: var(--busu-background);
+  justify-content: right; 
+}
+
+.text-image img {
+  margin-left: auto;
+  margin-right: 1rem; 
+  width: 200px;
+  height: 150px;
+}
+
+#theme-image{
+  height: calc(820px/12);
+  width: calc(500px/12);
+
+}
+#theme-switcher{
+  margin-bottom:0px;
+  background: none;
+  border: none;
+}
