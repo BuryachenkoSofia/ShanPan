@@ -35,5 +35,5 @@ class Comment(models.Model):
 
 class User(AbstractUser):
     money = models.IntegerField('Респани', blank=True, default=0)
-
+    profession = models.CharField('професія', blank=False, max_length=50, default="Шановний Пан")
     date_birth = models.DateTimeField(blank=True, null=True, verbose_name="День народження")

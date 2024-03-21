@@ -5,7 +5,7 @@ from .models import Article, Comment, User
 class CustomUserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'date_birth', 'money')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'date_birth', 'money', 'profession')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
