@@ -9,7 +9,7 @@ def index(request):
     latest_article_list = Article.objects.order_by('-pub_date')[:5]
     return render(request, 'app/index.html', {'latest_article_list': latest_article_list})
 
-def deteil(request, article_id):
+def detail(request, article_id):
     try:
       a = Article.objects.get(id = article_id)
     except:
@@ -25,8 +25,13 @@ def leave_comment(request, article_id):
     except:
       raise Http404("Не знайдено")
 
-    a.comment_set.create(author_name = request.POST['name'], comment_text = request.POST['text'])
-    return HttpResponseRedirect(reverse('deteil', args = (a.id,)))
+    # a.comment_set.create(request.user.username, comment_text = request.POST['text'])
+    # return HttpResponseRedirect(reverse('detail', args = (a.id,)))
+
+    author_name = request.user.username
+    comment_text = request.POST.get('text', '')
+    a.comment_set.create(author_name=author_name, comment_text=comment_text)
+    return HttpResponseRedirect(reverse('detail', args=(a.id,)))
 
 
 def about(request):
