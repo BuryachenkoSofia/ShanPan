@@ -1,11 +1,25 @@
-{% extends 'app/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html data-theme="dark">
 
-{% block main %}
-<form method="POST">
-  {% csrf_token %}
-  <input type="text" name="username" id="username">
-  <input type="password" name="password" id="password">
-  <button>Login</button>
-  {{ form.errors }}
-</form>
-{% endblock %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Авторизація</title>
+  <link rel="stylesheet" href="{% static 'css/login.css'%}" type="text/css">
+  <script src="{% static 'js/scripts.js' %}"></script>
+</head>
+<body>
+  <main>
+    <form method="POST">
+      <h1>Будь ласка, авторицуйтесь для роботи на сайті</h1>
+      {% csrf_token %}
+      <input placeholder="Нікнейм" type="text" name="username" id="username"><br>
+      <input placeholder="Пароль" type="password" name="password" id="password"><br>
+      <button>Login</button>
+      <!-- {{ form.errors }} -->
+    </form>
+  </main>
+
+</body>
+</html>
