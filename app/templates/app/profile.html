@@ -7,12 +7,14 @@
 
 
 {% block main %}
-  <h2>Нікнейм: {{ user.username }}</h2>
-  <h2>Ім'я: {{ user.first_name }}</h2>
-  <h2>Призвище: {{ user.last_name }}</h2>
-  <h2>Пошта: {{ user.email }}</h2>
-  <h2>Рахунок: {{ user.money }} рс</h2>
-  <button onclick="location.href='{% url 'logout' %}?next=/profile'">Logout</button>
+  <h1 class="name-surname">{{ user.first_name }} {{ user.last_name }}</h1>
+  <div class="profile">
+    <h2>Нікнейм: {{ user.username }}</h2>
+    <h2>Рахунок: {{ user.money }} рс</h2>
+    <h2>Професія: {{ user.profession }}</h2>
+    <button class="logout"onclick="location.href='{% url 'logout' %}?next=/profile'">Logout</button>
+  </div>
+  
 {% endblock %}
 
 {% block footer %}

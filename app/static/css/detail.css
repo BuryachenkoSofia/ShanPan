@@ -1,41 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
+
 :root {
   --background-color: #f4f4f4;
-  --text-color: #333;
+  --text-color: #081B1C;
   --article-background: #f4f4f4;
   --article-border: 1px solid #ddd;
   --article-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   --article-title-color: #333;
-  --article-text-color: #555;
+  --article-text-color: #333;
   --pub-date-color: #777;
   --latest-comments-background: #f4f4f4;
   --latest-comments-border: 1px solid #ddd;
   --latest-comments-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  --author-name-color: #444;
-  --comment-text-color: #666;
+  --author-name-color: #ffffff;
+  --comment-text-color: #ffffff;
   --input-element-border: 1px solid #ccc;
-  --input-button-bg: #4CAF50;
+  --input-button-bg: #77a484;
   --input-button-text-color: white;
-  --input-button-hover-bg: #45a049;
+  --comment-background: #77a484;
 }
-
+ 
 [data-theme="dark"] {
   --background-color: #081B1C;
   --text-color: #ffffff;
-  --article-background: #2c2c2c;
+  --article-background: #2a534c; 
   --article-border: 1px solid #334d4d;
   --article-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   --article-title-color: #ffffff;
-  --article-text-color: #a0a0a0;
+  --article-text-color: #ffffff;
   --pub-date-color: #a0a0a0;
-  --latest-comments-background: #2c2c2c;
+  --latest-comments-background: #163737; 
   --latest-comments-border: 1px solid #4d4d4d;
   --latest-comments-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  --author-name-color: #cccccc;
-  --comment-text-color: #b3b3b3;
+  --author-name-color: #ffffff;
+  --comment-text-color: #ffffff;
   --input-element-border: 1px solid #666;
-  --input-button-bg: #1e8e1e;
+  --input-button-bg: #638a75;       /*!в*/
   --input-button-text-color: white;
-  --input-button-hover-bg: #1b751b;
+  --comment-background: #638a75; /*!в*/
 }
 
 
@@ -92,7 +94,6 @@
   margin-top: 20px;
 }
 
-.input_name,
 .input_text {
   width: 100%;
   padding: 8px;
@@ -100,6 +101,12 @@
   box-sizing: border-box;
   border: var(--input-element-border);
   border-radius: 4px;
+  color: var(--text-color);
+}
+
+.input_text{
+  background-color:var(--article-background);
+  color: var(--text-color);
 }
 
 .input_button {
@@ -109,8 +116,16 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+.input_text::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-color);
 }
 
-.input_button:hover {
-  background-color: var(--input-button-hover-bg);
+.comment{
+  background-color: var(--comment-background); 
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
 }

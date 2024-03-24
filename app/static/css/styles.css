@@ -1,33 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap');
 
+/* Оголошення змінних */
 :root {
-  --background-color: #a9c1b4;
-  --text-color: #ffffff;
-  --link: #ffffff;
-  --all-links-div-a: black;
-  --header-background-color: #588473;
-  --constitution-color:  #588473;
-  --book-color:  #588473;
-  --busu-background: #588473;
-  --background-color-menu:#588473;
-  --background-color-menu-hover:#276857; 
-  --background-image-light-dark: url('{% static "on.png" %}');
+  --background-color-light: #B3C1B4;
+  --background-color-dark: #081B1C;
+  --text-color-light: #ffffff;
+  --text-color-dark: #ffffff;
+  --link-color-light: #ffffff;
+  --link-color-dark: #66B2FF;
+  --header-background-color-light: #588473;
+  --header-background-color-dark: #163737;
+  --book-color-light: #588473;
+  --book-color-dark: #163737;
+  --busu-background-light: #588473;
+  --busu-background-dark: #163737;
+  --background-color-menu-light: #588473;
+  --background-color-menu-dark: #163737;
+  --background-color-menu-hover-light: #2A534C; 
+  --background-color-menu-hover-dark: #2A534C;
+  --background-image-light: url('{% static "on.png" %}');
+  --background-image-dark: url('{% static "off.png" %}');
+  --input-button-bg-light:#77a484;
+  --input-button-bg-dark:#638a75;
+  --input-button-text-color-light:white;
+  --input-button-text-color-dark:white;
 }
 
-[data-theme="dark"] {
-  --background-color: #081B1C;
-  --text-color: #ffffff;
-  --header-background-color: #163737;
-  --link: #66B2FF;
-  --book-color: #163737;
-  --all-links-div-a: black;
-  --constitution-color: #2c2c2c;
-  --background-color-menu: #2A534C;
-  --background-color-menu-hover:#163737;
-  --busu-background: #163737;
-  --background-image-light-dark:  url('{% static "off.png" %}');
-  
+/* Стилі для світлої теми */
+[data-theme="light"] {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+  --link-color: var(--link-color-light);
+  --header-background-color: var(--header-background-color-light);
+  --book-color: var(--book-color-light);
+  --busu-background: var(--busu-background-light);
+  --background-color-menu: var(--background-color-menu-light);
+  --background-color-menu-hover: var(--background-color-menu-hover-light);
+  --background-image: var(--background-image-light);
+  --input-button-bg: var(--input-button-bg-light);
+  --input-button-text-color: var(--input-button-text-color-light);
 }
+
+/* Стилі для темної теми */
+[data-theme="dark"] {
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+  --link-color: var(--link-color-dark);
+  --header-background-color: var(--header-background-color-dark);
+  --book-color: var(--book-color-dark);
+  --busu-background: var(--busu-background-dark);
+  --background-color-menu: var(--background-color-menu-dark);
+  --background-color-menu-hover: var(--background-color-menu-hover-dark);
+  --background-image: var(--background-image-dark);
+  --input-button-bg: var(--input-button-bg-dark);
+  --input-button-text-color: var(--input-button-text-color-dark);
+}
+
+/* Загальні стилі */
 html {
   height: 100%;
   width: 100%;
@@ -40,24 +69,25 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-
-/*Футер і хедер, еххх*/
-footer,header {
+/* Заголовок і футер */
+header, footer {
   background-color: var(--header-background-color);
   padding: 10px;
   margin: -10px;
   text-align: center;
   font-size: 25px;
-  color: var(--header-text-color);
 }
-main{
+
+main {
   margin-top: 20px;
 }
-footer{
+
+footer {
   margin-top: 10px;
   font-size: 20px;
 }
-/*Наш бідний хедер*/
+
+/* Меню */
 .menu {
   top: 0;
   width: 100%;
@@ -87,8 +117,6 @@ footer{
   color: var(--text-color);
   padding-top: 22px;
   display: block;
-  /* height: 50px; */
-  justify-content: center; 
 }
 
 .menu>ul li a:hover {
@@ -97,7 +125,6 @@ footer{
 
 .menu>ul li ul {
   position: absolute;
-  top: 50px;
   left: 0px;
   width: 280px;
   margin-left: -40px;
@@ -120,10 +147,20 @@ footer{
   background-color: var(--background-color-menu-hover);
 }
 
+.book,
+.constitution {
+  margin: 0 auto;
+  width: 80%;
+  padding: 20px;
+  background-color: var(--book-color);
+}
+
+
 .menu ul li ul li a {
   font-size: 17px;
   width: auto;
-  padding: 3px;
+  padding: 10px;
+  padding-top: 15px;
   margin: 0px;
   display: block;
   line-height: normal;
@@ -132,58 +169,11 @@ footer{
   text-transform: uppercase;
 }
 
-
-ul,
-ol,
-li {
+/* Стилі для інших елементів */
+ul, ol, li {
   list-style-type: none;
 }
 
-/*Розділ "Про нас"*/
-.book,
-.constitution {
-  margin: 0 auto;
-  width: 80%;
-  padding: 20px;
-}
-
-.book {
-  background-color: var(--book-color);
-
-}
-
-.constitution {
-  background-color: var(--constitution-color);
-}
-
-/*Посилання (в основному хедер)*/
-.all_links {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.all_links div {
-  padding: 10px;
-  margin: 10px;
-}
-
-.all_links div a {
-  text-decoration: none;
-  color: var(--all-links-div-a);
-  font-size: 100px;
-  margin: auto 60px;
-}
-
-.all_links div p {
-  margin: auto 20px;
-}
-
-.link {
-  background-color: var(--link);
-  border-radius: 20px;
-}
-
-/*Перманентний маркер*/
 .hidden-image {
   display: none;
 }
@@ -191,17 +181,15 @@ li {
 .hover-text:hover+.hidden-image {
   display: block;
 }
-/*Заголовки розділів в сторінці "Про нас"*/
+
+/* Додаткові стилі */
 .kvadratik {
   text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto ;
-
 }
 
-
-/*Секретна сторінка бусюсюндр*/
 .text-image {
   display: flex;
   flex-direction: row;
@@ -212,7 +200,6 @@ li {
   margin: 0;
   padding-right: 1rem;
   background-color: var(--busu-background);
-  justify-content: right; 
 }
 
 .text-image img {
@@ -222,13 +209,67 @@ li {
   height: 150px;
 }
 
-#theme-image{
+#theme-image {
   height: calc(820px/12);
   width: calc(500px/12);
-
 }
-#theme-switcher{
+
+#theme-switcher {
   margin-bottom:0px;
   background: none;
   border: none;
+}
+
+.profile {
+  background-color: var(--book-color);
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.latest-publications {
+  background-color: var(--book-color);
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.latest-publications-h3 {
+  font-size: 24px;
+  margin: 0;
+  color: var(--text-color); 
+}
+
+.latest-publications .text {
+  margin-top: 20px; 
+}
+
+.latest-publications .text a {
+  color: #007bff; 
+  text-decoration: none; 
+}
+
+.latest-publications .text a:hover {
+  text-decoration: underline; 
+}
+
+.latest-publications .no-news {
+  color: #777; 
+  font-style: italic; 
+}
+
+.logout{
+  background-color: var(--input-button-bg);
+  color: var(--input-button-text-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.name-surname{
+  text-align: center;
+  background-color: var(--input-button-bg);
+  padding: 5px;
 }

@@ -24,6 +24,7 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     author_name = models.CharField('ім\'я автора', max_length=50)
     comment_text = models.CharField('текст коментаря', max_length=200)
+    
 
     def __str__(self):
         return self.author_name

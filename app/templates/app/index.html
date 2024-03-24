@@ -7,21 +7,20 @@
 
 
 {% block main %}
-
 <section>
   <div class='latest-publications text'>
-    <h3 class="latest-publications-h3">Latest publications</h3>
-    {% if latest_article_list%}
-    {% for a in latest_article_list %}
-      <div class=""><a href="/{{a.id}}">{{a.article_title}}</a></div>
-    {% endfor %}
-  {% else %}
-  Допоможіть, допоможіть, допоможіть! Я не роблю бекенд, мене зараз Аміра вб'є!
-  {% endif %}
+    <h3 class="latest-publications-h3">Новини:</h3>
+    <ul>
+      {% if latest_article_list%}
+        {% for a in latest_article_list %}
+          <li><a href="/{{a.id}}">{{a.article_title}}</a></li>
+        {% endfor %}
+      {% else %}
+        <p class="no-news">Новин немає! Стабільність – ознака майстерності.</p> 
+      {% endif %}
+    </ul>
   </div>
 </section>
-
-
 {% endblock %}
 
 {% block footer %}
