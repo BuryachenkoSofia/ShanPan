@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+
+{% block main %}
+  <h2>Редагування коментаря</h2>
+
+  <form action="{% url 'edit_comment' comment.id %}" method="post">
+    {% csrf_token %}
+    <label for="comment_text">Текст коментаря:</label>
+    <textarea id="comment_text" name="text" required>{{ comment.comment_text }}</textarea>
+    <button type="submit">Зберегти зміни</button>
+  </form>
+{% endblock %}

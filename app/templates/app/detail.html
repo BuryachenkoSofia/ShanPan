@@ -17,33 +17,28 @@
 </section>
 
 
-<!-- {% if article.was_published_recently %}
-<h1 width="50px">Нова новина</h1>
-{% endif %} -->
-
-  {% if latest_comments_list%}
-
-  {% for c in latest_comments_list %}
-    <div class="comment">
-      <p class="author_name">{{ c.author_name }}</p>
-      <p class="comment_text">{{ c.comment_text }}</p>
-      <br>
-    </div>
-      
-  {% endfor %}
-
+<!-{% if latest_comments_list %}
+{% for c in latest_comments_list %}
+  <div class="comment">
+    <p class="author_name">{{ c.author.username }}</p>
+    <p class="comment_text">{{ c.comment_text }}</p>
+    <p class="created_at">{{ c.created_at }}</p>
+    {% if request.user == c.author or request.user.is_superuser %}
+      <a href="{% url 'edit_comment' c.id %}">Редагувати</a>
+      <a href="{% url 'delete_comment' c.id %}">Видалити</a>
+    {% endif %}
+    <br>
+  </div>
+{% endfor %}
 {% else %}
 Тут поки немає коментарів, будь першим!
 {% endif %}
 
-<form class="input_form" width="100px" action="{% url 'leave_comment' article.id %}" method="POST">
-  {% csrf_token %}
-  <textarea class="input_text" name="text" required="" placeholder="Teкст коментаря" cols="30" rows="10"></textarea>
-  <br>
-  <button class="input_button" type="submit">Залишити коментар</button>
+<form class="input_form" action="{% url 'leave_comment' article.id %}" method="POST">
+{% csrf_token %}
+<textarea class="input_text" name="text" required="" placeholder="Teкст коментаря" cols="30" rows="10"></textarea>
+<br>
+<button class="input_button" type="submit">Залишити коментар</button>
 </form>
-{% endblock %}
 
-{% block footer %}
-All the rights reserved to "Бусюсюндри!"
 {% endblock %}

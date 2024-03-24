@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+
+{% block main %}
+  <h2>Підтвердження видалення</h2>
+  <p>Ви впевнені, що хочете видалити цей коментар?</p>
+
+  <form action="{% url 'delete_comment' comment.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Так, видалити</button>
+    <a href="{% url 'detail' comment.article.id %}">Ні, повернутися назад</a>
+  </form>
+{% endblock %}

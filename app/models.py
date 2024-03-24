@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.conf import settings
 
 class Article(models.Model):
     article_title = models.CharField('назва новини', max_length=200)
@@ -22,16 +23,19 @@ class Article(models.Model):
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    author_name = models.CharField('ім\'я автора', max_length=50)
-    comment_text = models.CharField('текст коментаря', max_length=200)
-    
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    comment_text = models.TextField('текст коментаря')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.author_name
+        return self.author.username
 
-    class Meta():
-      verbose_name = 'Коментар'
-      verbose_name_plural = 'Коментарі'
+    def can_edit_or_delete(self, user):
+        return self.author == user or user.is_superuser
+
+    class Meta:
+        verbose_name = 'Коментар'
+        verbose_name_plural = 'Коментарі'
 
 
 class User(AbstractUser):
