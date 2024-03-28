@@ -11,5 +11,8 @@ urlpatterns = [
     path('<int:article_id>/leave_comment/', views.leave_comment, name='leave_comment'),
     path('edit_comment/<int:comment_id>/', views.edit_comment, name='edit_comment'),
     path('delete_comment/<int:comment_id>/', views.delete_comment, name='delete_comment'),
-    path('profile', views.profile, name='Profile')
+
+    path('profile', views.profile, name='profile'),
+    path('add_respan/', views.add_respan, name='add_respan'),
+    path('remove_respan/', views.remove_respan, name='remove_respan'),
 ]

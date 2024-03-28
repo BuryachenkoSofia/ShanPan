@@ -12,6 +12,52 @@
     <h2>Нікнейм: {{ user.username }}</h2>
     <h2>Рахунок: {{ user.money }} рс</h2>
     <h2>Професія: {{ user.profession }}</h2>
+
+    {% if user.profession == 'Фінансовий робітник' %}
+
+      <h1>Додати респани</h1>
+      <form action="{% url 'add_respan' %}" method="POST">
+        {% csrf_token %}
+        <label for="selected_user">Оберіть користувача:</label>
+        <select name="selected_user" id="selected_user">
+          {% for other_user in users %}
+            <option value="{{ other_user.id }}">{{ other_user.username }}</option>
+          {% endfor %}
+        </select>
+        <br>
+        <label for="respan_amount">Кількість респанів для нарахування:</label>
+        <input type="number" id="respan_amount" name="respan_amount" min="1" required>
+        <br>
+        <button type="submit">Нарахувати респани</button>
+      </form>
+
+      <h1>Видалити респани</h1>
+      <form action="{% url 'remove_respan' %}" method="POST">
+        {% csrf_token %}
+        <label for="selected_user">Оберіть користувача:</label>
+        <select name="selected_user" id="selected_user">
+          {% for other_user in users %}
+            <option value="{{ other_user.id }}">{{ other_user.username }}</option>
+          {% endfor %}
+        </select>
+        <br>
+        <label for="respan_amount">Кількість респанів для видалення:</label>
+        <input type="number" id="respan_amount" name="respan_amount" min="1" required>
+        <br>
+        <button type="submit">Видалити респани</button>
+      </form>
+
+      <h1>Повідомлення</h1>
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+{% endif %}
+    {% endif %}
+
+
     <button class="logout"onclick="location.href='{% url 'logout' %}?next=/profile'">Logout</button>
   </div>
   

@@ -1,10 +1,9 @@
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render
-from .models import Article, Comment
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import Article, Comment, User
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
-
+from django.contrib import messages
 
 
 @login_required
@@ -78,4 +77,52 @@ def sect(request):
 
 @login_required
 def profile(request):
-  return render(request, 'app/profile.html')
+    users = User.objects.all()
+    return render(request, 'app/profile.html', {'users': users})
+
+
+@login_required
+def add_respan(request):
+    users = User.objects.all()  # Отримати всіх користувачів
+    if request.method == 'POST':
+        selected_user_id = request.POST.get('selected_user')
+        respan_amount = request.POST.get('respan_amount')
+        try:
+            selected_user = User.objects.get(id=selected_user_id)
+        except ObjectDoesNotExist:
+            messages.error(request, f'Користувача з id {selected_user_id} не існує.')
+            return redirect('profile')
+        
+        respan_amount = int(respan_amount)
+    
+        selected_user.money += respan_amount
+        selected_user.save()
+        messages.success(request, f'Респани успішно нараховані користувачеві {selected_user.username}: {respan_amount}')
+        return redirect('profile')
+    
+    return render(request, 'app/profile.html', {'users': users})
+
+
+@login_required
+def remove_respan(request):
+    users = User.objects.all()  # Отримати всіх користувачів
+    if request.method == 'POST':
+        selected_user_id = request.POST.get('selected_user')
+        respan_amount = request.POST.get('respan_amount')
+        try:
+            selected_user = User.objects.get(id=selected_user_id)
+        except ObjectDoesNotExist:
+            messages.error(request, f'Користувача з id {selected_user_id} не існує.')
+            return redirect('profile')
+        
+        respan_amount = int(respan_amount)
+        if selected_user.money - respan_amount < 0:
+            messages.error(request, 'Недостатньо респанів для видалення.')
+            return redirect('profile')
+        
+        selected_user.money -= respan_amount
+        selected_user.save()
+        messages.success(request, f'Респани успішно видалені з рахунку користувача {selected_user.username}: {respan_amount}')
+        return redirect('profile')
+    
+    return render(request, 'app/profile.html', {'users': users})
