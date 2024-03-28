@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Article, Comment, User
+from .models import Article, Comment, User, UserMessage
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -77,8 +77,9 @@ def sect(request):
 
 @login_required
 def profile(request):
+    user_messages = UserMessage.objects.filter(user=request.user).order_by('-created_at')
     users = User.objects.all()
-    return render(request, 'app/profile.html', {'users': users})
+    return render(request, 'app/profile.html', {'users': users, 'user_messages': user_messages})
 
 
 @login_required
@@ -97,7 +98,11 @@ def add_respan(request):
     
         selected_user.money += respan_amount
         selected_user.save()
-        messages.success(request, f'Респани успішно нараховані користувачеві {selected_user.username}: {respan_amount}')
+        comment = request.POST.get('comment', '').strip()  
+        message = f'Вам нараховано {respan_amount} респанів.'
+        if comment: 
+            message += f' Коментар: {comment}'
+        UserMessage.objects.create(user=selected_user, message=message)
         return redirect('profile')
     
     return render(request, 'app/profile.html', {'users': users})
@@ -122,7 +127,11 @@ def remove_respan(request):
         
         selected_user.money -= respan_amount
         selected_user.save()
-        messages.success(request, f'Респани успішно видалені з рахунку користувача {selected_user.username}: {respan_amount}')
+        comment = request.POST.get('comment', '').strip()  
+        message = f'Вам нараховано {respan_amount} респанів.'
+        if comment: 
+            message += f' Коментар: {comment}'
+        UserMessage.objects.create(user=selected_user, message=message)
         return redirect('profile')
     
     return render(request, 'app/profile.html', {'users': users})
