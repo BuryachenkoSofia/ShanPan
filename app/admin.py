@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Article, Comment, User
+from .models import Article, Comment, User, UserMessage
 
 class CustomUserAdmin(BaseUserAdmin):
     fieldsets = (
@@ -15,7 +15,8 @@ class CustomUserAdmin(BaseUserAdmin):
             'fields': ('username', 'password1', 'password2'),
         }),
     )
-
+    
+admin.site.register(User, CustomUserAdmin)
 admin.site.register(Article)
 admin.site.register(Comment)
-admin.site.register(User, CustomUserAdmin)
+admin.site.register(UserMessage)
